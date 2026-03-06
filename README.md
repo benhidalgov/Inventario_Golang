@@ -1,6 +1,6 @@
 # 🏪 Tienda - API de Inventario
 
-> Microservicio de inventario desarrollado en Go con enfoque en alto rendimiento, concurrencia segura y persistencia con SQLite.
+> Microservicio de inventario desarrollado en Go con enfoque en alto rendimiento, concurrencia segura y persistencia con SQLite. Proyecto enfocado al aprendizaje del lenguaje
 
 ## 🛠️ Tech Stack
 
