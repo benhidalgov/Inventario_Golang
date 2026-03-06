@@ -1,0 +1,12 @@
+# Binarios
+/tienda-server
+*.exe
+
+# Base de datos local (¡Nunca subir el .db!)
+/internal/dbs/*.db
+
+# Entorno de VS Code
+.vscode/
+
+# Dependencias de Go
+vendor/
