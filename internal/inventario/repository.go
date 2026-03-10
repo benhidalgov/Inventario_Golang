@@ -4,9 +4,10 @@ import (
 	"database/sql"
 
 	// El guion bajo (_) significa "importar solo por sus efectos secundarios".
-	// Este paquete registra el driver "sqlite3" en database/sql mediante su
-	// función init(). Sin esto, sql.Open("sqlite3", ...) fallaría.
-	_ "github.com/mattn/go-sqlite3"
+	// Este paquete registra el driver "sqlite" en database/sql mediante su
+	// función init(). Sin esto, sql.Open("sqlite", ...) fallaría.
+	// Usamos modernc.org/sqlite que es 100% Go y no requiere CGO/GCC.
+	_ "modernc.org/sqlite"
 )
 
 // SQLiteRepository encapsula la conexión a la base de datos SQLite.
@@ -20,8 +21,8 @@ type SQLiteRepository struct {
 // o un error si algo falla.
 func NewSQLiteRepository(path string) (*SQLiteRepository, error) {
 	// sql.Open no abre la conexión de inmediato, solo la configura.
-	// "sqlite3" es el nombre del driver registrado por go-sqlite3.
-	db, err := sql.Open("sqlite3", path)
+	// "sqlite" es el nombre del driver registrado por modernc.org/sqlite.
+	db, err := sql.Open("sqlite", path)
 	if err != nil {
 		return nil, err
 	}

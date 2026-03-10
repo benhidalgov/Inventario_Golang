@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
 	"tienda/internal/inventario"
+	"tienda/internal/web"
 )
 
 func main() {
@@ -69,6 +69,12 @@ func procesarCompra(inv *inventario.Inventario) http.HandlerFunc {
 		err := json.NewDecoder(r.Body).Decode(&req)
 		if err != nil {
 			http.Error(w, "Json invalido", http.StatusBadRequest)
+			return
+		}
+
+		//Validacion de seguridad para no permitir cantidades negativas
+		if req.Cantidad <= 0 {
+			web.Error(w, http.StatusBadRequest, "Cantidad debe ser mayor a 0")
 			return
 		}
 
